@@ -34,7 +34,6 @@ class PatientController extends BaseController
     /**
      * Get patients
      *
-     * @param StoreRequest $request
      * @return JsonResponse
      */
     public function get(): JsonResponse

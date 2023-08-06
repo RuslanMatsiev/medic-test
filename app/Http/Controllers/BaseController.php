@@ -8,7 +8,7 @@ use App\Traits\ApiResponse;
 class BaseController extends Controller
 {
     use ApiResponse;
-    
+
     public $service;
 
     public function __construct(Service $service)
