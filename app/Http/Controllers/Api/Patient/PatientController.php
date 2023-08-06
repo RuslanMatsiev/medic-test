@@ -39,10 +39,10 @@ class PatientController extends BaseController
      */
     public function get(): JsonResponse
     {
-        $patient = $this->service->get();
+        $patients = $this->service->get();
 
-        if ($patient) {
-            return $this->apiResponseSuccess($patient);
+        if ($patients) {
+            return $this->apiResponseSuccess($patients);
         }
 
         return $this->apiResponseError(['Patients not found']);
