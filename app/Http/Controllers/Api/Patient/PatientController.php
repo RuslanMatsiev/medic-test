@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Controllers\Api\Patient;
+
+use App\Http\Controllers\BaseController;
+use App\Http\Requests\Api\Patient\StoreRequest;
+use App\Services\Patient\PatientService;
+use Illuminate\Http\JsonResponse;
+
+class PatientController extends BaseController
+{
+    public function __construct()
+    {
+        parent::__construct(new PatientService());
+    }
+
+    /**
+     * Adding a patient
+     *
+     * @param StoreRequest $request
+     * @return JsonResponse
+     */
+    public function add(StoreRequest $request): JsonResponse
+    {
+        $patient = $this->service->add($request->validated());
+
+        if ($patient) {
+            return $this->apiResponseSuccess($patient);
+        }
+
+        return $this->apiResponseError(['Failed to add patient']);
+    }
+
+    /**
+     * Get patients
+     *
+     * @param StoreRequest $request
+     * @return JsonResponse
+     */
+    public function get(): JsonResponse
+    {
+        $patient = $this->service->get();
+
+        if ($patient) {
+            return $this->apiResponseSuccess($patient);
+        }
+
+        return $this->apiResponseError(['Patients not found']);
+    }
+}
